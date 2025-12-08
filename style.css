@@ -1,0 +1,137 @@
+/* Reset asas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: "Georgia", serif;
+  background: #1e1e2f;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 50px;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+/* Intro */
+.intro {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+/* Button */
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #f5eeef;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: rgb(5, 2, 2);
+  transition: 0.3s;
+}
+.btn:hover {
+  background: #b1acad;
+}
+
+/* Wrapper untuk surat + gambar */
+.content-wrapper {
+  display: flex;
+  align-items: flex-start; /* atas surat & gambar selari */
+  gap: 20px;               /* jarak antara surat & gambar */
+  flex-wrap: wrap;          /* wrap bila skrin kecil */
+  justify-content: center;  /* center horizontal */
+}
+
+/* Surat */
+.letter {
+  flex: 3;                  /* ambil ruang yang ada */
+  min-width: 400px;          /* minimum lebar supaya tidak terlalu kecil */
+  max-width: 850px;          /* maksimum ikut preference */
+  background: repeating-linear-gradient(
+    to bottom,
+    #fdf6e3 0px,
+    #fdf6e3 27px,
+    #d2d2d2 28px
+  );
+  color: #333;
+  padding: 30px 30px 30px 70px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: left;
+  position: relative;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* Garis tepi surat */
+.letter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 100%;
+  background-image: radial-gradient(circle, #1e1e2f 6px, transparent 7px);
+  background-size: 25px 40px;
+  background-repeat: repeat-y;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* Signature */
+.signature {
+  position: absolute;
+  bottom: -20px;
+  right: 6px;
+  width: 180px;
+  opacity: 0.9;
+  pointer-events: none;
+  transform: rotate(-2deg);
+}
+
+/* Gambar tepi */
+.side-image {
+  width: 30%;          /* ambil 20% lebar container */
+  max-width: 300px;    /* maksimum 150px */
+  height: auto;        /* kekalkan aspect ratio */
+  border-radius: 5px;  /* optional untuk cantik */
+}
+
+/* Responsive untuk skrin kecil */
+@media (max-width: 600px) {
+  .content-wrapper {
+    flex-direction: column; /* gambar bawah surat bila skrin kecil */
+    align-items: center;
+  }
+  .side-image {
+    width: 30%;
+    max-width: 120px;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+/* Default: surat + gambar tak nampak */
+#popup {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Bila aktif */
+#popup.show {
+  display: flex;
+  opacity: 1;
+}
